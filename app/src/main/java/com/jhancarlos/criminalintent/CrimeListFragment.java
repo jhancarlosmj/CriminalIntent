@@ -1,6 +1,7 @@
 package com.jhancarlos.criminalintent;
 
 import android.app.ListFragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -22,6 +23,7 @@ public class CrimeListFragment extends ListFragment {
     private SimpleDateFormat mDateFormat;
     private Date mDate;
     private String mDateFormated;
+    private static final int REQUEST_CRIME = 1;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -34,9 +36,27 @@ public class CrimeListFragment extends ListFragment {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        ((CrimeAdapter)getListAdapter()).notifyDataSetChanged();
+    }
+
+    @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
+        // Get the Crime from the adapter
         Crime c = ((CrimeAdapter)getListAdapter()).getItem(position);
         Log.d(TAG, c.getTitle() + " was clicked");
+        // Start CrimeActivity
+        Intent i = new Intent(getActivity(), CrimeActivity.class);
+        i.putExtra(CrimeFragment.EXTRA_CRIME_ID, c.getId());
+        startActivityForResult(i, REQUEST_CRIME);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_CRIME) {
+        // Handle result
+        }
     }
 
     private class CrimeAdapter extends ArrayAdapter<Crime> {
