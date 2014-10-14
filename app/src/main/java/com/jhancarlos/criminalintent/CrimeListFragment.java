@@ -58,7 +58,7 @@ public class CrimeListFragment extends ListFragment {
 
             TextView dateTextView =
                     (TextView) convertView.findViewById(R.id.crime_list_item_dateTextView);
-
+            //mdate format
             mDateFormat = new SimpleDateFormat(getString(R.string.date_list_template));
 
             //Get Date of Crime
