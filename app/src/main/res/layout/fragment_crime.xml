@@ -40,4 +40,12 @@
             android:layout_weight="0"
             android:text="@string/crime_solved_label" />
     </LinearLayout>
+
+    <Spinner
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/crime_spinner"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="4dp"/>
 </LinearLayout>

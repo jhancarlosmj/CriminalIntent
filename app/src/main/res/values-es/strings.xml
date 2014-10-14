@@ -11,5 +11,8 @@
     <string name="date_template">"EEEE dd MMMM yyyy"</string>
     <string name="date_list_template">"EEEE dd MMM hh:mm:ss yyyy"</string>
     <string name="crime_date">Fecha del crimen</string>
+    <string name="severity_slight">Leve</string>
+    <string name="severity_regular">Regular</string>
+    <string name="severity_severe">Severo</string>
 
 </resources>

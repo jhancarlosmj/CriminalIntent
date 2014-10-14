@@ -6,13 +6,17 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import org.apache.commons.lang3.text.WordUtils;
 
@@ -28,6 +32,7 @@ public class CrimeFragment extends Fragment {
     private SimpleDateFormat mDateFormat;
     private Date mDate;
     private String mDateFormated;
+    private Spinner mSeveritySpinner;
     //private String mLanguage = Locale.getDefault().getLanguage();
 
     @Override
@@ -37,8 +42,7 @@ public class CrimeFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup parent,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup parent,Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_crime, parent, false);
         mTitleField = (EditText) v.findViewById(R.id.crime_title);
         mTitleField.addTextChangedListener(new TextWatcher() {
@@ -76,6 +80,34 @@ public class CrimeFragment extends Fragment {
                 mCrime.setSolved(isChecked);
             }
         });
+
+        mSeveritySpinner = (Spinner) v.findViewById(R.id.crime_spinner);
+
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),R.array.severiry_list, android.R.layout.simple_spinner_item);
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //
+
+        // Apply the adapter to the spinner
+        mSeveritySpinner.setAdapter(adapter);
+
+        mSeveritySpinner.setSelection(mCrime.getSeverity());
+
+        mSeveritySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                mCrime.setSeverity(position);
+                Log.d("Serveriry",""+mCrime.getSeverity());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
 
         return v;
     }

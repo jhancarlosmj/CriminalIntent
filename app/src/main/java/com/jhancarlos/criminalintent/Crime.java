@@ -8,10 +8,12 @@ public class Crime {
     private String mTitle;
     private Date mDate;
     private boolean mSolved;
+    private int mSeverity;
 
     public Crime() {
         mId = UUID.randomUUID();
         mDate = new Date();
+        mSeverity = 2;
     }
 
     public UUID getId() {
@@ -40,6 +42,14 @@ public class Crime {
 
     public void setSolved(boolean solved) {
         mSolved = solved;
+    }
+
+    public int getSeverity() {
+        return mSeverity;
+    }
+
+    public void setSeverity(int severity) {
+        mSeverity = severity;
     }
 
     @Override
