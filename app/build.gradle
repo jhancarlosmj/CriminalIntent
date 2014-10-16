@@ -22,4 +22,6 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile files('libs/common-lang3.jar')
+    compile "com.android.support:support-v13:20.0.+"
+
 }
